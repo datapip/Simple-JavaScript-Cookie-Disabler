@@ -1,0 +1,19 @@
+{
+"name": "Simple JavaScript/Cookie Disabler",
+"short_name": "JS/Cookie Disabler",
+"version": "1.1",
+"description": "Simply disable JavaScript and Cookies / Storage.",
+"manifest_version": 2,
+"browser_action": {
+	"default_icon": {
+        "128": "icon.png"
+    },
+	"default_popup": "extension.html"
+},
+"icons": {
+	"128": "icon.png"
+},
+"permissions": [
+	"contentSettings"
+	]
+}
