@@ -62,13 +62,11 @@ function applyChoice(callback) {
 
 window.onload = function() {
 
-    var url  = "http://*";
-
-    chrome.contentSettings.javascript.get( {primaryUrl: url}, function(details) {
+    chrome.contentSettings.javascript.get( {primaryUrl: "http://*"}, function(details) {
         setChecked("javascript", details.setting);
     });
 
-    chrome.contentSettings.cookies.get( {primaryUrl: url}, function(details) {
+    chrome.contentSettings.cookies.get( {primaryUrl: "http://*"}, function(details) {
         setChecked("cookies", details.setting);
     });
 
