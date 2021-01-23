@@ -1,7 +1,7 @@
 {
 "name": "Simple JavaScript/Cookie Disabler",
 "short_name": "JS/Cookie Disabler",
-"version": "1.1",
+"version": "1.2",
 "description": "Simply disable JavaScript and Cookies / Storage.",
 "manifest_version": 2,
 "browser_action": {
