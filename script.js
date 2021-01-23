@@ -25,7 +25,7 @@ function setChecked(name, value) {
 
 
 /**
- * Callback for adding two numbers.
+ * Callback.
  *
  * @callback callbackFunction
  */
@@ -70,11 +70,6 @@ window.onload = function() {
 
     chrome.contentSettings.cookies.get( {primaryUrl: url}, function(details) {
         setChecked("cookies", details.setting);
-    });
-
-
-    document.querySelector("#close").addEventListener("click", function() {
-        window.close();
     });
 
     document.querySelector("#apply").addEventListener("click", function() {

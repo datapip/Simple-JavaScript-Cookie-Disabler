@@ -9,35 +9,34 @@
 
     <body>
 
+        <header>
+            <div id="headline">Simple Disabler</div>
+            <div id="feedback"><a href="mailto:p.a.jaeckle@gmail.com">&#9993;</a></div>
+        </header>  
+
         <main>
-
-            <span id="close">&#10006;</span>
-            <span id="feedback"><a href="mailto:p.a.jaeckle@gmail.com">&#9993;</a></span>
-
-            <section>
-                <h1>Settings</h1>
-            </section>
-
             <section id="settings">
 
-                <label class="switch">
-                    <input type="checkbox" name="javascript">
-                    <span class="slider round"></span>
-                    <span class="name">JavaScript</span>
-                </label>
+                <div class="toggle">
+                    <label class="switch">
+                        <input type="checkbox" name="javascript">
+                        <span class="slider"></span>
+                        <div class="name">JavaScript</div>
+                    </label>
+                </div>
 
-                <br>
-
-                <label class="switch">
-                    <input type="checkbox" name="cookies">
-                    <span class="slider round"></span>
-                    <span class="name">Storage (e.g. Cookies)</span>
-                </label>
+                <div class="toggle">
+                    <label class="switch">
+                        <input type="checkbox" name="cookies">
+                        <span class="slider"></span>
+                        <div class="name">Cookies + Storage</div>
+                    </label>
+                </div>
 
             </section>
 
-            <section id="buttons">
-                <button id="apply">Apply and Reload</button>
+            <section id="button">
+                <button id="apply">Go</button>
             </section>
 
         </main>
