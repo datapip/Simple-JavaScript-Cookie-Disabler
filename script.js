@@ -62,7 +62,7 @@ function applyChoice(callback) {
 
 window.onload = function() {
 
-    var url  = 'http://*';
+    var url  = "http://*";
 
     chrome.contentSettings.javascript.get( {primaryUrl: url}, function(details) {
         setChecked("javascript", details.setting);
