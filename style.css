@@ -1,10 +1,10 @@
 :root {
-    --accent: #00477f;
-    --lightaccent: #0091ff;
+  --accent: #00477f;
+  --lightaccent: #0091ff;
 	--light: #ffffff;
 	--dark: #000000;
-    --shade: #6f6f6f;;
-    --lightshade: #afafaf;
+  --shade: #6f6f6f;;
+  --lightshade: #afafaf;
 }
 
 body {

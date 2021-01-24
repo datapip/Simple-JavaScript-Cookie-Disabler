@@ -1,78 +1,70 @@
 /**
- * Returns whether provided element is allowed or blocked.
+ * Returns status of input with provided 'name'.
  *
  * @param {string} name The name value of the input field.
  * @return {string} Either "allow" or "block".
  */
 
-function getSetting(name) {
+function getInputField(name) {
     var el = document.querySelector("input[name="+name+"]");
     return (el.checked) ? ("allow") : ("block");
 }
 
 
 /**
- * Checks or unchecks provided input element.
+ * Sets input with provided 'name' to 'value'.
  *
  * @param {string} name The name value of the input field.
  * @param {string} value The value if input field should be checked ("allow" for check).
  */
-
-function setChecked(name, value) {
+function adaptInputField(name, value) {
     var element = document.querySelector("input[name='"+name+"']");
     (value == "allow") ? (element.checked = true) : (element.checked = false)
 }
 
 
 /**
- * Callback.
+ * Gets current content setting of 'name' and adapt input field accordingly.
  *
- * @callback callbackFunction
+ * @param {string} name The name value of the input field.
  */
+function getAndDisplay(name) {
+    chrome.contentSettings[name].get( {primaryUrl: "http://*"}, function(details) {
+        adaptInputField(name, details.setting);
+    });
+}
+
 
 /**
- * Sets javascript and cookie settings for browser according to users choice.
+ * Sets content setting of 'name' to 'value'.
  *
- * @param {callbackFunction} callback A custom callback function to run.
+ * @param {string} name The name value of the input field.
+ * @param {string} value The value if input field should be checked ("allow" for check).
  */
-
-function applyChoice(callback) {
-    var jss = {
+function getAndSet() {
+    var name = this.name;
+    var value = getInputField(name);
+    var details = {
         primaryPattern: "<all_urls>",
-        setting: getSetting("javascript")
+        setting: value
     };
-
-    chrome.contentSettings.javascript.set(jss, function() {
-    
-        var cks = {
-            primaryPattern: "<all_urls>",
-            setting: getSetting("cookies")
-        };
-
-        chrome.contentSettings.cookies.set(cks, function() {
-            callback();
-        });
-    });
+    chrome.contentSettings[name].set(details);
 }
 
 
 /**
  * Sets current settings for javascript and cookies and add event listeners when loaded.
  */
-
 window.onload = function() {
 
-    chrome.contentSettings.javascript.get( {primaryUrl: "http://*"}, function(details) {
-        setChecked("javascript", details.setting);
-    });
+    document.querySelectorAll("input[name]")
+    .forEach( function(item) { 
+        var currentName = item.name;
+        getAndDisplay(currentName);
+        document.querySelector("input[name="+currentName+"]").addEventListener("change", getAndSet);
+    } );
 
-    chrome.contentSettings.cookies.get( {primaryUrl: "http://*"}, function(details) {
-        setChecked("cookies", details.setting);
-    });
-
-    document.querySelector("#apply").addEventListener("click", function() {
-        applyChoice(function() {
-            chrome.tabs.reload();
-        });
+    document.querySelector("#reload").addEventListener("click", function() {
+        chrome.tabs.reload();
     });
 }
